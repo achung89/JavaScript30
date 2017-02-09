@@ -45,9 +45,41 @@
     input {
       width:100px;
     }
+    img {
+      border:1px solid #ffc600;
+    }
   </style>
 
   <script>
+  window.onload = function() {
+    var color = '#ffc600';
+
+    var changeColor = function(e) {
+      e.defaultPrevented = true;
+      color = e.target.value;
+      document.querySelector('img').style.borderColor = color;
+      document.querySelector('.hl').style.color = color;
+    }
+    var base = document.getElementById('base');
+    base.addEventListener('change', changeColor);
+
+    var changeSpacing = function(e){
+      e.defaultPrevented = true;
+      var node = e.target;
+      var img = document.querySelector('img');
+      img.style.border = node.value + node.dataset.sizing + ' solid '+ color;
+    }
+    var space = document.getElementById('spacing');
+    space.addEventListener('change', changeSpacing);
+
+    var changeBlur = function(e) {
+      e.defaultPrevented = true;
+      var img = document.querySelector('img');
+      img.style.filter = `blur(${e.target.value}${e.target.dataset.sizing})`;
+    }
+    var blur = document.getElementById('blur');
+    blur.addEventListener('change', changeBlur);
+  }
   </script>
 
 </body>

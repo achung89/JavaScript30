@@ -108,6 +108,19 @@
 
   <script>
 
+       var container = document.querySelector('.panels');
+      container.style.display = 'flex';
+      container.style.flexDirection = 'row';
+      
+      var nodeList = document.querySelectorAll('.panel');
+      var panels = Array.from(nodeList);
+
+      panels.map((element) => {
+        element.style.display = 'flex';
+        element.style.flexDirection = 'column';
+        element.style.justifyContent = 'center';
+      });
+
   </script>
 
 

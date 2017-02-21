@@ -14,9 +14,40 @@
       <li>or a state</li>
     </ul>
   </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-</script>
+  <script>
+  var locations;
+  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    fetch(endpoint)
+    .then((data) => {
+      return data.json();
+    })
+    .then((data) => {
+      locations = data;
+    })
+    var input = document.getElementsByClassName('search');
+    var list = document.getElementsByClassName('suggestions')[0];
+
+    input[0].addEventListener('input', (e) => {
+      var string = '';
+      while ( list.firstChild ) {
+        list.removeChild(list.firstChild);
+      }
+      console.log(list);
+      locations.filter ( (element) => {
+
+        var input = e.target.value.toLowerCase();
+        var bool = element.city.toLowerCase().includes(input) 
+         || element.state.toLowerCase().includes(input);
+        return bool;
+      })
+      .forEach ( (value) => {
+        // console.log(element);
+        string = string + `<li>${value.city},${value.state} <span style="float:right"> ${value.population}</span></li>`;
+      })
+      list.innerHTML = string;
+    })
+
+  </script>
   </body>
 </html>

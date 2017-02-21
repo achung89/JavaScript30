@@ -113,12 +113,22 @@
       container.style.flexDirection = 'row';
       
       var nodeList = document.querySelectorAll('.panel');
+
       var panels = Array.from(nodeList);
 
       panels.map((element) => {
-        element.style.display = 'flex';
-        element.style.flexDirection = 'column';
-        element.style.justifyContent = 'center';
+        
+        element.style.flex= '1';
+        // Array.from(element.children).map((text) => {
+        //   console.log('before',text.style);
+        //   text.style.style.justifyContent = 'space-between';
+        //   console.log('after',text.style);
+        // })
+        element.addEventListener('click',function (e){
+          e.target.style.flex = (5/e.target.style.flexGrow);
+          e.target.style.justifyContent = 'center';
+        })
+
       });
 
   </script>

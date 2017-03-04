@@ -5,8 +5,23 @@
   <title>HTML5 Canvas</title>
 </head>
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
+<canvas id="draw" width="800" height="800">
+</canvas>
 <script>
+  var canvas = document.getElementById('draw');
+
+    if (canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+      // drawing code here
+    } else {
+      // canvas-unsupported code here
+    }
+    window.addEventListener('mousedown', function(event){
+                              console.log(event);
+                              ctx.beginPath();
+                              ctx.arc(event.offsetX, event.offsetY, 10, 0,360,false);
+                              ctx.fill();
+                            })
 </script>
 
 <style>
